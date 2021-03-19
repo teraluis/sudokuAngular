@@ -26,4 +26,14 @@ input, input:focus {
 
 }
 
+.danger {
+  background-color: #c0392b;
+  color: white;
+}
+.danger input {
+  color: white;
+}
+input, input:focus-visible {
+  background-color: rgba(255,255,255,0);
+}
 

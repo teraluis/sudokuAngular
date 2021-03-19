@@ -29,6 +29,11 @@ export class SudokuComponent implements OnInit, OnChanges {
       if (isNaN(n)) n = 1;
       const solution = new Matrice(this.grille);
       this.message = solution.testValue(n, line, col);
+      if ((this.message.length > 0)) {
+        this.modification[line][col] = true;
+      } else {
+        this.modification[line][col] = false;
+      }
     }
   }
 
