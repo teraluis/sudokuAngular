@@ -27,11 +27,11 @@ export class AppComponent implements OnInit {
   }
 
   getSolution() {
-    if (this.showSolution) {
-      this.grilleTrous = this.sudokuService.getExercice();
-    } else {
+    this.grilleTrous = this.sudokuService.getExercice();
+    if (!this.showSolution) {
       const matrice = new Matrice(this.grilleTrous);
-      this.grilleTrous = matrice.sudokuSolver();
+      matrice.sudokuSolver();
+      //matrice.sudokuSolverBacktracking(0);
     }
     this.showSolution = !this.showSolution;
   }

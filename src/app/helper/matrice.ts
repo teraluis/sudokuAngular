@@ -34,7 +34,7 @@ export class Matrice implements Validation {
     for (const line of this.sudoku) {
       const cloneLine = line.slice(square.originX, square.originX + 3);
       if (lineNumber >= square.originY && lineNumber < square.originY + 3) {
-        console.log(cloneLine);
+        // tslint:disable-next-line:prefer-for-of
         for (let i = 0; i < cloneLine.length; i++) {
           tabSquare.push(cloneLine[i]);
         }
@@ -73,17 +73,16 @@ export class Matrice implements Validation {
     return message;
   }
   sudokuSolver(): number[][] {
-    const solution = this.sudoku;
-    for (let lineNumber = 0; lineNumber < solution.length; lineNumber++) {
-      for (let col = 0; col < solution.length; col++) {
-        if (solution[lineNumber][col] === 0) {
+    for (let lineNumber = 0; lineNumber < this.sudoku.length; lineNumber++) {
+      for (let col = 0; col < this.sudoku.length; col++) {
+        if (this.sudoku[lineNumber][col] === 0) {
           const square = new Square(col, lineNumber);
           let trouve = false;
           let n = 1;
-          solution[lineNumber][col] = 0;
+          this.sudoku[lineNumber][col] = 0;
           do {
             if (!this.inLine(n, lineNumber) && !this.inColumn(n, col) && !this.inSquare(n, square)) {
-              solution[lineNumber][col] = n;
+              this.sudoku[lineNumber][col] = n;
               trouve = true;
             }
             ++n;
@@ -91,7 +90,35 @@ export class Matrice implements Validation {
         }
       }
     }
-    return solution;
+    return this.sudoku;
   }
 
+  sudokuIsSolved(matrice: number[][]) {
+    for (let line = 0 ; matrice.length ; line++) {
+      for (let col = 0; matrice.length; col++) {
+        if (matrice[line][col] === 0) return false;
+      }
+    }
+    return true;
+  }
+
+  sudokuSolverBacktracking(position: number): boolean {
+    if (position === 81) { return  true; }
+
+    const line = Math.trunc(position / 9);
+    const col = position % 9;
+    if (this.sudoku[line][col] !== 0) { return this.sudokuSolverBacktracking(position + 1); }
+
+    for (let k = 1; k <= 9; k++) {
+      const square = new Square(col, line);
+      if (!this.inLine(k, line) && !this.inColumn(k, col) && !this.inSquare(k, square)) {
+        this.sudoku[line][col] = k;
+
+        if ( this.sudokuSolverBacktracking (position + 1) ) { return true; }
+      }
+    }
+    this.sudoku[line][col] = 0;
+
+    return false;
+  }
 }

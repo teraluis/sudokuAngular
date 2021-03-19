@@ -21,7 +21,6 @@ export class SudokuComponent implements OnInit, OnChanges {
   }
 
   setValue(n: any, line: number, col: number) {
-    console.log('line : ' + line + " , " + col);
     if (n !== '' && n !== undefined) {
       n = parseInt(String(n), 10);
       if (n <= 0)   n = 1;
@@ -47,7 +46,6 @@ export class SudokuComponent implements OnInit, OnChanges {
       this.modification.push(tmp);
     }
   }
-
 }
 
 
