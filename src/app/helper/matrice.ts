@@ -67,9 +67,9 @@ export class Matrice implements Validation {
     const square = new Square(col, line);
     const inLine = this.inLine(n, line);
     const inColumn = this.inColumn(n, col);
-    if (inLine) { message += ` le chiffre ${n} est deja present sur la ligne \r\n`; }
-    if (inColumn) { message += ` le chiffre ${n} est deja present sur la colonne \r\n`; }
-    if (this.inSquare(n, square)) { message += ` le chiffre ${n} est déjà present dans le carre \r\n`; }
+    if (inLine) { message += ` Le chiffre ${n} est deja present sur la ligne. \r\n` ; }
+    if (inColumn) { message += ` Le chiffre ${n} est deja present sur la colonne. \r\n`; }
+    if (this.inSquare(n, square)) { message += ` Le chiffre ${n} est déjà present dans le carre. \r\n`; }
     return message;
   }
 

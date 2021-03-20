@@ -11,5 +11,5 @@ export interface Validation {
 
   inSquare(n: number, square: Square): boolean;
 
-  sudokuSolver(): void;
+  sudokuSolver(): number[][];
 }

@@ -1,5 +1,7 @@
 import {ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import { Matrice } from '../../helper/matrice';
+import {MatDialog} from '@angular/material/dialog';
+import {PopupComponent} from '../popup/popup.component';
 @Component({
   selector: 'app-sudoku',
   templateUrl: './sudoku.component.html',
@@ -10,7 +12,7 @@ export class SudokuComponent implements OnInit, OnChanges {
   @Input() grille: number[][];
   modification: CellValidation [][] = [];
   message: string;
-  constructor(private cdRef: ChangeDetectorRef) {}
+  constructor(private cdRef: ChangeDetectorRef, public errorsDialog: MatDialog) {}
 
   ngOnInit(): void {
     this.initSudoku();
@@ -39,6 +41,7 @@ export class SudokuComponent implements OnInit, OnChanges {
           this.modification[line][col].valid = true;
         }
       }
+      this.openErrorsDialog();
     }
   }
 
@@ -55,6 +58,17 @@ export class SudokuComponent implements OnInit, OnChanges {
       }
       this.modification.push(tmp);
     }
+  }
+
+  openErrorsDialog(): void {
+    const dialogRef = this.errorsDialog.open(PopupComponent, {
+      width: '250vw',
+      data: {message: this.message}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed' + result);
+    });
   }
 }
 export interface CellValidation {

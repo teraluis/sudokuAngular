@@ -1,0 +1,25 @@
+<h2>Entrainement au Sudoku </h2>
+<div class="wrapper">
+  <div class="sudoku">
+    <mat-card>
+    <button (click)="getSolution()" mat-raised-button color="primary">
+      {{(showSolution)?'cacher':'montrer'}} solution
+    </button>
+    <br>
+    <app-sudoku [grille]="grilleTrous"></app-sudoku>
+    </mat-card>
+  </div>
+  <div class="consigne">
+    <mat-card>
+    <h3>Règles du sudoku</h3>
+    <p>Le sudoku Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, blanditiis culpa
+      cumque dicta dolorum esse fuga
+      inventore iure, necessitatibus neque numquam quidem sunt veniam vero voluptatibus!
+      Eaque expedita in magnam?</p>
+    <p>1 chiffre par colonne</p>
+    <p>1 chiffre par ligne</p>
+    <p>1 chiffre par petit carré</p>
+    </mat-card>
+  </div>
+</div>
+

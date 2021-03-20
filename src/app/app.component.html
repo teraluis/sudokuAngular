@@ -1,4 +1,9 @@
-<h2>Entrainement au Sudoku </h2>
-<button (click)="getSolution()"> {{(showSolution)?'cacher':'montrer'}} solution </button>
-<br>
-<app-sudoku [grille]="grilleTrous"></app-sudoku>
+<button mat-button [matMenuTriggerFor]="menu">Menu</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item [routerLink]="'sudoku'">Sudoku</button>
+  <button mat-menu-item>Pendu</button>
+</mat-menu>
+<div class="marge">
+  <router-outlet></router-outlet>
+</div>
+
