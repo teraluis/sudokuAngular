@@ -72,6 +72,10 @@ export class Matrice implements Validation {
     if (this.inSquare(n, square)) { message += ` le chiffre ${n} est déjà present dans le carre \r\n`; }
     return message;
   }
+
+  /*
+    This sudoku solution only uses sudoku rules to make the sudoku
+   */
   sudokuSolver(): number[][] {
     for (let lineNumber = 0; lineNumber < this.sudoku.length; lineNumber++) {
       for (let col = 0; col < this.sudoku.length; col++) {
@@ -93,15 +97,9 @@ export class Matrice implements Validation {
     return this.sudoku;
   }
 
-  sudokuIsSolved(matrice: number[][]) {
-    for (let line = 0 ; matrice.length ; line++) {
-      for (let col = 0; matrice.length; col++) {
-        if (matrice[line][col] === 0) return false;
-      }
-    }
-    return true;
-  }
-
+  /*
+    This function allows to solve a sudoku with the back tracking method. Its consist to solve recursevily using the position
+   */
   sudokuSolverBacktracking(position: number): boolean {
     if (position === 81) { return  true; }
 

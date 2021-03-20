@@ -21,7 +21,8 @@ export class SudokuComponent implements OnInit, OnChanges {
   }
 
   setValue(n: any, line: number, col: number) {
-    if (n !== '' && n !== undefined) {
+    if (n !== '' && n !== undefined && this.modification[line][col].updatable) {
+      this.modification[line][col].updated = true;
       n = parseInt(String(n), 10);
       if (n < 0 || n > 9) {
         this.message = 'Conditions : 1<= chiffre <= 9';
@@ -38,7 +39,6 @@ export class SudokuComponent implements OnInit, OnChanges {
           this.modification[line][col].valid = true;
         }
       }
-
     }
   }
 
@@ -48,9 +48,9 @@ export class SudokuComponent implements OnInit, OnChanges {
       const tmp = [];
       for (let j = 0; j < size ; j++) {
         if (this.grille[i][j] === 0) {
-          tmp.push({valid: true, updatable: true});
+          tmp.push({valid: true, updatable: true, updated: false});
         } else {
-          tmp.push({valid: true, updatable: false});
+          tmp.push({valid: true, updatable: false, updated: false});
         }
       }
       this.modification.push(tmp);
@@ -60,6 +60,7 @@ export class SudokuComponent implements OnInit, OnChanges {
 export interface CellValidation {
   valid: boolean;
   updatable: boolean;
+  updated: boolean;
 }
 
 

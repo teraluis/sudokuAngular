@@ -28,13 +28,13 @@ input, input:focus {
 
 .danger {
   background-color: #c0392b;
-  color: white;
 }
+
 .valid {
   background-color: green;
-  color: white;
 }
-.danger input {
+
+.danger input, .valid input {
   color: white;
 }
 input, input:focus-visible {

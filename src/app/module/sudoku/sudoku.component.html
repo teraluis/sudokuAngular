@@ -3,7 +3,8 @@
   <tr *ngFor="let line of grille;let index = index">
     <td *ngFor="let item of line; let col = index"
         [ngClass]="{'square': index % 3 === 0,
-        'danger': modification[index][col].valid === false && modification[index][col].updatable === true,
+        'danger': modification[index][col].valid === false && modification[index][col].updatable === true && modification[index][col].updated === true,
+        'valid': modification[index][col].valid === true && modification[index][col].updatable === true && modification[index][col].updated === true,
          'column': (col+1) % 3 === 0 && col != 0}">
       <input #newValue
              (keyup.enter)="setValue(newValue.value, index, col)"
