@@ -3,12 +3,13 @@
   <tr *ngFor="let line of grille;let index = index">
     <td *ngFor="let item of line; let col = index"
         [ngClass]="{'square': index % 3 === 0,
-        'danger': modification[index][col] === true,
+        'danger': modification[index][col].valid === false && modification[index][col].updatable === true,
          'column': (col+1) % 3 === 0 && col != 0}">
       <input #newValue
              (keyup.enter)="setValue(newValue.value, index, col)"
              (blur)="setValue(newValue.value, index, col)"
              type="text"
+             [readOnly]="!modification[index][col].updatable"
              [(ngModel)]="(grille[index][col] === 0)?'':grille[index][col]" style="width: 20px">
     </td>
   </tr>

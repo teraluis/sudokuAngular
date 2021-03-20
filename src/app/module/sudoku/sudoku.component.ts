@@ -8,7 +8,7 @@ import { Matrice } from '../../helper/matrice';
 export class SudokuComponent implements OnInit, OnChanges {
 
   @Input() grille: number[][];
-  modification: boolean [][] = [];
+  modification: CellValidation [][] = [];
   message: string;
   constructor(private cdRef: ChangeDetectorRef) {}
 
@@ -23,29 +23,43 @@ export class SudokuComponent implements OnInit, OnChanges {
   setValue(n: any, line: number, col: number) {
     if (n !== '' && n !== undefined) {
       n = parseInt(String(n), 10);
-      if (n <= 0)   n = 1;
-      if (n >= 9)  n = 9;
-      if (isNaN(n)) n = 1;
-      const solution = new Matrice(this.grille);
-      this.message = solution.testValue(n, line, col);
-      if ((this.message.length > 0)) {
-        this.modification[line][col] = true;
+      if (n < 0 || n > 9) {
+        this.message = 'Conditions : 1<= chiffre <= 9';
+        this.modification[line][col].valid = false;
+      } else if (isNaN(n)) {
+        this.message = 'vous devez rentrer un nombre';
+        this.modification[line][col].valid = false;
       } else {
-        this.modification[line][col] = false;
+        const solution = new Matrice(this.grille);
+        this.message = solution.testValue(n, line, col);
+        if ((this.message.length > 0)) {
+          this.modification[line][col].valid = false;
+        } else {
+          this.modification[line][col].valid = true;
+        }
       }
+
     }
   }
 
   initSudoku() {
     const size = 9;
-    for (let i = 0 ; i < size * size; i++) {
+    for (let i = 0 ; i < size; i++) {
       const tmp = [];
-      for (let j = 0; j < size; j++) {
-        tmp.push(false);
+      for (let j = 0; j < size ; j++) {
+        if (this.grille[i][j] === 0) {
+          tmp.push({valid: true, updatable: true});
+        } else {
+          tmp.push({valid: true, updatable: false});
+        }
       }
       this.modification.push(tmp);
     }
   }
+}
+export interface CellValidation {
+  valid: boolean;
+  updatable: boolean;
 }
 
 

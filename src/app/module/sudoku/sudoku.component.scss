@@ -30,6 +30,10 @@ input, input:focus {
   background-color: #c0392b;
   color: white;
 }
+.valid {
+  background-color: green;
+  color: white;
+}
 .danger input {
   color: white;
 }
