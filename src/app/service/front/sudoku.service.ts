@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Subject} from 'rxjs';
-import {Matrice} from '../../helper/matrice';
+
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +18,10 @@ export class SudokuService {
   }
 
   getExercice(): number[][] {
+    return this.sudokuA();
+  }
+
+  sudokuA(): number[][] {
     return  [
       [0, 0, 5, 0, 4, 8, 0, 3, 0],
       [4, 6, 0, 0, 7, 0, 0, 0, 2],
@@ -33,7 +37,7 @@ export class SudokuService {
     ];
   }
 
-  getExercice2(): number[][] {
+  sudokuB(): number[][] {
     return  [
       [2, 0, 0, 0, 0, 7, 8, 1, 3],
       [0, 1, 0, 0, 8, 5, 0, 0, 2],
