@@ -10,8 +10,9 @@ export class PopupComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<PopupComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: ErrorsModal
   ) {
+    console.log(data)
   }
 
   ngOnInit(): void {
@@ -19,4 +20,8 @@ export class PopupComponent implements OnInit {
   closeErrors() {
     this.dialogRef.close();
   }
+}
+export interface ErrorsModal {
+  message: string[];
+  errors: number;
 }

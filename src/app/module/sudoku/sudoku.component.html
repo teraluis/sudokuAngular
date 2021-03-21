@@ -1,12 +1,12 @@
-<p>{{message}}</p>
 <table cellpadding="0" cellspacing="0">
   <tr *ngFor="let line of grille;let index = index">
     <td *ngFor="let item of line; let col = index"
         [ngClass]="{'square': index % 3 === 0,
-        'danger': modification[index][col].valid === false && modification[index][col].updatable === true && modification[index][col].updated === true,
-        'valid': modification[index][col].valid === true && modification[index][col].updatable === true && modification[index][col].updated === true,
+        'danger': cssDanger(index, col),
+        'valid': cssValid(index, col),
          'column': (col+1) % 3 === 0 && col != 0}">
       <input #newValue
+             maxlength="1"
              (keyup.enter)="setValue(newValue.value, index, col)"
              (blur)="setValue(newValue.value, index, col)"
              type="text"

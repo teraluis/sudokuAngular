@@ -62,14 +62,14 @@ export class Matrice implements Validation {
     return tab.filter((x) => x === n).length > 0;
   }
 
-  testValue(n: number, line: number, col: number): string {
-    let message = '';
+  testValue(n: number, line: number, col: number): string[] {
+    let message = [];
     const square = new Square(col, line);
     const inLine = this.inLine(n, line);
     const inColumn = this.inColumn(n, col);
-    if (inLine) { message += ` Le chiffre ${n} est deja present sur la ligne. \r\n` ; }
-    if (inColumn) { message += ` Le chiffre ${n} est deja present sur la colonne. \r\n`; }
-    if (this.inSquare(n, square)) { message += ` Le chiffre ${n} est déjà present dans le carre. \r\n`; }
+    if (inLine) { message.push(` Le chiffre ${n} est deja present sur la ligne. \r\n` ); }
+    if (inColumn) { message.push(` Le chiffre ${n} est deja present sur la colonne. \r\n`); }
+    if (this.inSquare(n, square)) { message.push( ` Le chiffre ${n} est déjà present dans le carre. \r\n`); }
     return message;
   }
 

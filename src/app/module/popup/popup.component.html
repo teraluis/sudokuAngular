@@ -1,3 +1,3 @@
-<h4>Erreurs</h4>
-<p>{{data.message}}</p>
-<button (click)="closeErrors()">Fermer</button>
+<h4><span matBadge="{{data.errors}}" matBadgeOverlap="false">Erreurs</span></h4>
+<p *ngFor="let m of data.message">{{m}}</p>
+<button mat-raised-button color="accent" (click)="closeErrors()">Fermer</button>
