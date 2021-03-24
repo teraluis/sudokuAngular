@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SudokuComponent } from './module/sudoku/sudoku.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { PopupComponent } from './module/popup/popup.component';
 import { SudokuSolverComponent} from './module/sudoku-solver/sudoku-solver.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -51,12 +51,21 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import {OverlayModule} from '@angular/cdk/overlay';
+import {RulesComponent} from './module/rules/rules.component';
+import {MapComponent} from './module/map/map.component';
+import {HttpClientModule} from '@angular/common/http';
+import { InscriptionComponent } from './module/inscription/inscription.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     SudokuComponent,
     PopupComponent,
-    SudokuSolverComponent
+    SudokuSolverComponent,
+    RulesComponent,
+    MapComponent,
+    InscriptionComponent
   ],
   imports: [
     BrowserModule,
@@ -107,6 +116,8 @@ import {OverlayModule} from '@angular/cdk/overlay';
     OverlayModule,
     PortalModule,
     ScrollingModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

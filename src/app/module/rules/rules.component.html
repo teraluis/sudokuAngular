@@ -1,0 +1,8 @@
+<mat-card>
+  <h3>Règles du {{rulers.name}}</h3>
+  <p>Le {{rulers.name}} est un jeu inventé par <b>{{rulers.createdBy}}</b> en <b>{{rulers.created.getFullYear()}}</b></p>
+  <p><strong>Les régles sont les suivantes :</strong></p>
+  <ul>
+    <li *ngFor="let ruler of rulers.rulers">{{ruler}}</li>
+  </ul>
+</mat-card>

@@ -1,0 +1,13 @@
+:host,form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+mat-form-field {
+  width: 98vw;
+}
+
+button[type=submit] {
+  width: 98vw;
+}

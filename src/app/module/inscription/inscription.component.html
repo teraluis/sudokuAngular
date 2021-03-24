@@ -1,0 +1,53 @@
+<form autocomplete="off" (ngSubmit)="saveUser(userForm)" #userForm="ngForm">
+  <mat-form-field appearance="outline">
+    <mat-label>Nom Prenom</mat-label>
+    <input type="text"
+           name="name"
+           minlength="2"
+           required
+           [ngModel] = "user.name"
+           #name = "ngModel"
+           matInput>
+    <mat-error *ngIf="name.invalid && name.touched">Le nom doit faire au moins 2 lettres</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="legacy">
+    <mat-label>Email</mat-label>
+    <input type="email"
+           name="email"
+           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+           required
+           [ngModel] = "user.email"
+           matInput
+           #email="ngModel">
+    <mat-error *ngIf="email.invalid && email.touched">{{getEmailErrorMessage(email.value)}}</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+  <mat-label>Password</mat-label>
+  <input type="password"
+         name="password"
+         minlength="6"
+         required
+         matInput
+         [ngModel]="user.password"
+         #password1="ngModel"
+  >
+  <mat-error *ngIf="password1.invalid && password1.touched">
+    Le mot de passe doit containir au moins 6 caracteres
+  </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Confirmation</mat-label>
+    <input type="password"
+           name="password"
+           minlength="6"
+           required
+           matInput
+           [ngModel]="confirmation"
+           #password2="ngModel"
+    >
+    <mat-error *ngIf="password2 !== password1 && password2.touched">
+      Les mots de passe doivent être identiques
+    </mat-error>
+  </mat-form-field>
+  <button type="submit" mat-stroked-button color="primary">Enregistrer</button>
+</form>

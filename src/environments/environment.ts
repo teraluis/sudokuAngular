@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  localBackend: 'http://localhost:3000',
+  production: false,
+  environment: {
+    value: 'local',
+    color: 'green'
+  }
 };
 
 /*
