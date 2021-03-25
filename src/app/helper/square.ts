@@ -3,6 +3,7 @@ export class Square {
   private _originY: number;
   private _destinationX: number;
   private _destinationY: number;
+
   constructor(col: number, line: number) {
     this.setOriginX(col);
     this.setOriginY(line);

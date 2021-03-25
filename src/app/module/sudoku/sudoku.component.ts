@@ -26,24 +26,26 @@ export class SudokuComponent implements OnInit, OnChanges {
   setValue(n: any, line: number, col: number) {
     if (n !== '' && n !== undefined && this.modification[line][col].updatable) {
       this.modification[line][col].updated = true;
-      n = parseInt(String(n), 10);
-      if (n < 0 || n > 9) {
-        this.message.push('Conditions : 1<= chiffre <= 9');
-        this.modification[line][col].valid = false;
-      } else if (isNaN(n)) {
-        this.message.push('vous devez rentrer un nombre');
+      if (isNaN(n) || n < 0 || n > 9) {
+        this.message = ['Vous devez rentrer un chiffre compris entre 1 et 9'];
         this.modification[line][col].valid = false;
       } else {
+        n = parseInt(String(n), 10);
         const solution = new Matrice(this.grille);
         this.message = solution.testValue(n, line, col);
-        if ((this.message.length > 0)) {
-          this.modification[line][col].valid = false;
-          this.errorsCount++;
-          this.openErrorsDialog();
-        } else {
-          this.modification[line][col].valid = true;
-        }
       }
+      this.showDialog(line, col);
+    }
+  }
+
+  showDialog(line: number, col: number) {
+    if (this.message.length > 0) {
+      this.modification[line][col].valid = false;
+      this.errorsCount++;
+      this.openErrorsDialog();
+      this.grille[line][col] = 0;
+    } else {
+      this.modification[line][col].valid = true;
     }
   }
 
@@ -72,6 +74,7 @@ export class SudokuComponent implements OnInit, OnChanges {
       console.log('The dialog was closed' + result);
     });
   }
+
   cssDanger(index: number, col: number): boolean {
     return !this.modification[index][col].valid && this.modification[index][col].updatable && this.modification[index][col].updated;
   }

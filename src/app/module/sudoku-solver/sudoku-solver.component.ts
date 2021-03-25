@@ -34,7 +34,6 @@ export class SudokuSolverComponent implements OnInit, AfterViewInit {
     this.grilleTrous = this.sudokuService.getExercice();
     if (!this.showSolution) {
       const matrice = new Matrice(this.grilleTrous);
-      //matrice.sudokuSolver();
       matrice.sudokuSolverBacktracking(0);
     }
     this.showSolution = !this.showSolution;

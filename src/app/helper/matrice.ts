@@ -63,7 +63,7 @@ export class Matrice implements Validation {
   }
 
   testValue(n: number, line: number, col: number): string[] {
-    let message = [];
+    const message = [];
     const square = new Square(col, line);
     const inLine = this.inLine(n, line);
     const inColumn = this.inColumn(n, col);
